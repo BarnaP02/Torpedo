@@ -1,0 +1,4 @@
+﻿  main.c
+D:\0_0-UNI-0_0\NHZ\Torpedo_VS\Torpedo_VS\main.c(47,20): warning C4013: 'tolower' undefined; assuming extern returning int
+D:\0_0-UNI-0_0\NHZ\Torpedo_VS\Torpedo_VS\main.c(168,9): warning C4101: 'p1map': unreferenced local variable
+  Torpedo_VS.vcxproj -> D:\0_0-UNI-0_0\NHZ\Torpedo_VS\Debug\Torpedo_VS.exe
