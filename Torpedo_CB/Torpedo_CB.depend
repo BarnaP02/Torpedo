@@ -1,0 +1,74 @@
+# depslib dependency file v1.0
+1669589418 source:d:\0_0-uni-0_0\nhz\torpedo_cb\beolvasas.c
+
+1669592543 source:d:\0_0-uni-0_0\nhz\torpedo_cb\game.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<Windows.h>
+	"debugmalloc.h"
+	"stroktok.h"
+	"loves.h"
+	"game.h"
+
+1668253286 d:\0_0-uni-0_0\nhz\torpedo_cb\debugmalloc.h
+	<stdbool.h>
+	<stddef.h>
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<stdarg.h>
+	<process.h>
+	<unistd.h>
+
+1669592541 d:\0_0-uni-0_0\nhz\torpedo_cb\stroktok.h
+	"debugmalloc.h"
+
+1669592507 d:\0_0-uni-0_0\nhz\torpedo_cb\loves.h
+	"debugmalloc.h"
+	"stroktok.h"
+
+1669592509 d:\0_0-uni-0_0\nhz\torpedo_cb\game.h
+	"debugmalloc.h"
+	"stroktok.h"
+	"loves.h"
+
+1669592655 source:d:\0_0-uni-0_0\nhz\torpedo_cb\loves.c
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<Windows.h>
+	"debugmalloc.h"
+	"stroktok.h"
+	"loves.h"
+
+1669593280 source:d:\0_0-uni-0_0\nhz\torpedo_cb\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<Windows.h>
+	"debugmalloc.h"
+	"stroktok.h"
+	"loves.h"
+	"game.h"
+
+1669592510 source:d:\0_0-uni-0_0\nhz\torpedo_cb\stroktok.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<Windows.h>
+	"debugmalloc.h"
+	"stroktok.h"
+

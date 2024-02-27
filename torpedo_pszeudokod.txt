@@ -1,0 +1,110 @@
+TORPEDO JATEK:
+
+Structs(){
+Point --> a tile
+Ship  --> 2 tile, int intact_tiles, abs(b,e)=length of ship	//if ship is hit, intact_tiles-- if <0 then its destroyed
+Map   --> char [size][size], bool hit
+State --> 2 Map, 2 ship[fleet size] and 2 int ships_down //for the current state of the game
+Game  --> a State, diff, size, gm		      //for saving and replayability
+}
+
+Menu(1){
+LOAD/NEW
+[LOAD:
+file neve --> reverse save]
+[NEW:
+set_gm --> CP/PVP
+[[CP:
+exp_diff
+get_diff
+diff_sets --> CP accuracy
+exp_size
+get_size
+size_sets --> map size, fleet size]
+[[PVP:
+exp_size
+get_size
+size_sets --> map size, fleet size]]
+}
+
+Menu(2){
+*CP/PVP
+[CP:
+exp_place_fleet
+place_fleet: test_if_valid --> existing_tile, not_occupied
+not_occupied: empty, not_bordering
+place_fleet --(*fleet_size)--> Fleet p1fleet
+place_fleet --(*fleet_size, random)--> Fleet cpfleet]
+[PVP:
+exp_place_fleet
+place_fleet --(*fleet_size)--> Fleet p1fleet
+place_fleet --(*fleet_size)--> Fleet p2fleet]
+refresh_state --> State x.p1Map, x.p2Map/x.cpMap
+}
+
+Menu(3){	//playing the game
+*CP/PVP:
+///////////player///////////
+[CP: if_cp = true
+show_state(bool if_cp, char pov='1'/'2')	//shows the map to the player or to the player coming next
+get_target --(char)--> "%c%d"(D17) --> Point target /"%s"(save,quit,exit,restart,main,csave (save and continue))
+on_target --> YES/NO	//looks thru the tiles with a ship on them, tile can't be hit or get_target
+[[YES: --> targeted ship.intact_tiles-- --> if_sink --> YES/NO
+[[[YES: --> kill_near_tiles	//shows the tiles near sunken ship]
+[[[NO: nothing]]
+[[NO: nothing]
+hit_target --> State x.cpMap[target.x][target.y].hit=true
+show_state(if_cp, 1)
+if_ship_floats -->YES/NO
+[[NO: --> you win]
+[[YES: nothing]
+/////////////cp/////////////
+if_last_hit --> YES/NO	//if it hit previously and didn't sink a ship
+[[YES:
+try_near --(Point prev_hit)--> Point target	//gets a tile near the previous hit]
+[[NO:
+roll_if_hit --> HIT/MISS
+[[[HIT:
+roll_ship_tile --> Point target]
+[[[MISS:
+roll_water_tile --> Point target]]
+hit_target --> State x.p1Map[target.x][target.y].hit=true]
+if_ship_floats -->YES/NO
+[[NO: --> you just lost]
+[[YES: nothing]
+///////////player1///////////
+[PVP: if_cp = false
+show_state(if_cp, char pov='1')	
+get_target --(char)--> "%c%d"(D17) --> Point target /"%s"(save,quit,exit,restart,main,csave (save and continue))
+on_target --> YES/NO	//looks thru the tiles with a ship on them, tile can't be hit or get_target
+[[YES: --> targeted ship.intact_tiles-- --> if_sink --> YES/NO
+[[[YES: --> kill_near_tiles	//shows the tiles near sunken ship]
+[[[NO: nothing]]
+[[NO: nothing]
+hit_target --> State x.p2Map[target.x][target.y].hit=true
+show_state(if_cp, 1)
+if_ship_floats -->YES/NO
+[[NO: --> you win]
+[[YES:
+get_next_player		//requires next player to come to the PC (perhaps with password)]
+///////////player2///////////
+show_state(if_cp, char pov='2')	
+get_target --(char)--> "%c%d"(D17) --> Point target /"%s"(save,quit,exit,restart,main,csave (save and continue))
+on_target --> YES/NO	//looks thru the tiles with a ship on them, tile can't be hit or get_target
+[[YES: --> targeted ship.intact_tiles-- --> if_sink --> YES/NO
+[[[YES: --> kill_near_tiles	//shows the tiles near sunken ship]
+[[[NO: nothing]]
+[[NO: nothing]
+hit_target --> State x.p1Map[target.x][target.y].hit=true
+show_state(if_cp, 2)
+if_ship_floats -->YES/NO
+[[NO: --> you win]
+[[YES:
+get_next_player		//requires next player to come to the PC (perhaps with password)]]
+}
+
+Save(){
+*save		//triggered when aiming
+get_name --> char save[]
+to_file(char save[], Game g)		//writes every component of the current game into a file named by the player
+}

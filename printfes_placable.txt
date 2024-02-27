@@ -1,0 +1,96 @@
+
+bool placable(int rown, int col, char align, int index, int map_size, Hajo* new_navy, int navy_size) {  //meg kell nézni hogy az egész hajó rajta lenne e a pályán (1) és hogy nincs e túl közel egy másik hajóhoz (2)
+    printf("rown:%d\tcol:%d\talign:%d\tindex:%d\tmapsize:%d\tnavy_size:%d\n", rown, col, align, index, map_size, navy_size);
+    Hajo ship;
+    ship.b.x = col;
+    ship.b.y = rown; //% 256;        //mert egy nagy negatív szám és nem találom hogy miért
+    ship.intact_tiles = index+1;        //mert carriernél 4 lenne
+    if (align=='v')
+    {
+        ship.e.x = col + index;
+        ship.e.y = rown;
+    }
+    else
+    {
+        ship.e.x = col;
+        ship.e.y = rown + index;
+    }
+    //ship.e.y = ship.e.y % 256;
+    printf("mapsize:%d\nship-end:%c[%d:%d]\n", map_size,ship.e.y+'A', (ship.e.x), ship.e.y);
+    if (ship.e.x > map_size - 1 || ship.e.y > map_size - 1) //csak az endet tesztelem mert begininget újra kéri a függvény ha nem megfelelelő
+    {
+        //printf("placfals\n");
+        return false;
+    }
+    int this_ship_len = ((ship.e.x - ship.b.x) + (ship.e.y - ship.b.y)) % 256;
+    Hajo that_ship;
+    int that_ship_len = 0;
+    for (int i = 0; i < navy_size; i++)
+    {
+        that_ship.b.x = new_navy[i].b.x;
+        that_ship.b.y = new_navy[i].b.y;
+        that_ship.e.x = new_navy[i].e.x;
+        that_ship.e.y = new_navy[i].e.y;
+        that_ship_len = ((new_navy[i].e.x - new_navy[i].b.x) + (new_navy[i].e.y - new_navy[i].b.y)) % 256;  //ha vizszintes akkor b.y és e.y ugyan az, ha függőleges akkor pedig a b.x és e.x
+        printf("\nthis len:%d\tthat len:%d\n", this_ship_len, that_ship_len);
+        if (that_ship_len == 0) that_ship_len = -1;    //az üres hajóhoz nem kell hasonlítani
+        for (int i = 0; i < that_ship_len + 1; i++)     //végig megyünk az összes mezőjén a nézendő hajónak
+        {
+            printf("\n---------that:(%d,%d):(%d,%d)", that_ship.b.x, that_ship.b.y, that_ship.e.x, that_ship.e.y);
+            for (int j = 0; j < this_ship_len + 1; j++)     //végignézzük az összes elemét a hajónak
+            {
+                //printf("this:(%d,%d):(%d,%d)\t", ship.b.x, ship.b.y, ship.e.x, ship.e.y);
+                printf("\ni:%d j:%d\t", i, j);
+                if (ship.b.x==ship.e.x) //ha függőleges
+                {
+                    if (that_ship.b.x == that_ship.e.x)  //ha függőleges
+                    {
+                            printf("///this:(%d,%d)\tthat:(%d,%d)\t", ship.b.x, ship.b.y + j, that_ship.b.x, that_ship.b.y + i);
+                            printf(".x:%d .y:%d\t", ship.b.x - that_ship.b.x, ship.b.y + j - that_ship.b.y + i);
+                        if (abs(ship.b.x - that_ship.b.x) < 2 && abs((ship.b.y + j) - (that_ship.b.y + i)) < 2) {
+                            printf("f f utkozik,i:%d j:%d\n", i, j);
+                            printf("this:(%d,%d):(%d,%d)\tthat:(%d,%d):(%d,%d)\n", ship.b.x, ship.b.y, ship.e.x, ship.e.y, that_ship.b.x, that_ship.b.y, that_ship.e.x, that_ship.e.y);
+                            return false;   //túl közel vannak egymáshoz
+                        }
+                    }
+                    else
+                    {
+                            printf("this:(%d,%d)\tthat:(%d,%d)\n", ship.b.x, ship.b.y + j, that_ship.b.x + i, that_ship.b.y);
+                            printf(".x:%d .y:%d\t", ship.b.x - that_ship.b.x + i, ship.b.y + j - that_ship.b.y);
+                        if (abs(ship.b.x - (that_ship.b.x + i)) < 2 && abs((ship.b.y + j) - that_ship.b.y) < 2) {
+                            printf("f v utkozik,i:%d j:%d\n", i, j);
+                            printf("this:(%d,%d):(%d,%d)\tthat:(%d,%d):(%d,%d)\n", ship.b.x, ship.b.y, ship.e.x, ship.e.y, that_ship.b.x, that_ship.b.y, that_ship.e.x, that_ship.e.y);
+                            return false;   //túl közel vannak egymáshoz
+                        }
+                    }
+                }
+                else
+                {
+                    if (that_ship.b.x == that_ship.e.x)  //ha függőleges
+                    {
+                            printf("this:(%d,%d)\tthat:(%d,%d)\n", ship.b.x + j, ship.b.y, that_ship.b.x, that_ship.b.y + i);
+                            printf(".x:%d .y:%d\t", ship.b.x + j - that_ship.b.x, ship.b.y - that_ship.b.y + i);
+                        if (abs((ship.b.x + j) - that_ship.b.x) < 2 && abs(ship.b.y - (that_ship.b.y + i)) < 2) {
+                            printf("v f utkozik,i:%d j:%d\n", i, j);
+                            printf("this:(%d,%d):(%d,%d)\tthat:(%d,%d):(%d,%d)\n", ship.b.x, ship.b.y, ship.e.x, ship.e.y, that_ship.b.x, that_ship.b.y, that_ship.e.x, that_ship.e.y);
+                            return false;   //túl közel vannak egymáshoz
+                        }
+                    }
+                    else
+                    {
+                            printf("this:(%d,%d)\tthat:(%d,%d)\n", ship.b.x + j, ship.b.y, that_ship.b.x + i, that_ship.b.y);
+                            printf(".x:%d .y:%d\t", ship.b.x + j - that_ship.b.x + i, ship.b.y - that_ship.b.y);
+                        if (abs((ship.b.x + j) - (that_ship.b.x + i)) < 2 && abs(ship.b.y - that_ship.b.y) < 2) {
+                            printf("v v utkozik,i:%d j:%d\n", i, j);
+                            printf("this:(%d,%d):(%d,%d)\tthat:(%d,%d):(%d,%d)\n", ship.b.x, ship.b.y, ship.e.x, ship.e.y, that_ship.b.x, that_ship.b.y, that_ship.e.x, that_ship.e.y);
+                            return false;   //túl közel vannak egymáshoz
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+    printf("mukodik mert csodas\n");
+    return true;
+}

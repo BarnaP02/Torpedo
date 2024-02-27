@@ -1,4 +1,9 @@
 ﻿  main.c
-D:\0_0-UNI-0_0\NHZ\Torpedo_VS\Torpedo_VS\main.c(47,20): warning C4013: 'tolower' undefined; assuming extern returning int
-D:\0_0-UNI-0_0\NHZ\Torpedo_VS\Torpedo_VS\main.c(168,9): warning C4101: 'p1map': unreferenced local variable
+D:\0_0-UNI-0_0\NHZ\Torpedo_VS\Torpedo_VS\Debug\debugmalloc.h(339,14): warning C4018: '>': signed/unsigned mismatch
+D:\0_0-UNI-0_0\NHZ\Torpedo_VS\Torpedo_VS\main.c(194,9): warning C4013: 'gets' undefined; assuming extern returning int
+D:\0_0-UNI-0_0\NHZ\Torpedo_VS\Torpedo_VS\main.c(256,26): warning C4133: 'function': incompatible types - from 'int *' to 'char *'
+D:\0_0-UNI-0_0\NHZ\Torpedo_VS\Torpedo_VS\main.c(264,30): warning C4133: 'function': incompatible types - from 'int *' to 'char *'
+D:\0_0-UNI-0_0\NHZ\Torpedo_VS\Torpedo_VS\main.c(496,38): warning C4013: 'set_navy_size' undefined; assuming extern returning int
+D:\0_0-UNI-0_0\NHZ\Torpedo_VS\Torpedo_VS\main.c(1941,21): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\0_0-UNI-0_0\NHZ\Torpedo_VS\Torpedo_VS\main.c(511): warning C4715: 'get_ship_by_coords': not all control paths return a value
   Torpedo_VS.vcxproj -> D:\0_0-UNI-0_0\NHZ\Torpedo_VS\Debug\Torpedo_VS.exe

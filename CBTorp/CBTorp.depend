@@ -1,0 +1,91 @@
+# depslib dependency file v1.0
+1670441552 source:d:\0_0-uni-0_0\nhz\cbtorp\stroktok.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<Windows.h>
+	"debugmalloc.h"
+	"stroktok.h"
+
+1668253286 d:\0_0-uni-0_0\nhz\cbtorp\debugmalloc.h
+	<stdbool.h>
+	<stddef.h>
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<stdarg.h>
+	<process.h>
+	<unistd.h>
+
+1670441554 d:\0_0-uni-0_0\nhz\cbtorp\stroktok.h
+	"debugmalloc.h"
+
+1670442088 source:d:\0_0-uni-0_0\nhz\cbtorp\lerakas.c
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<Windows.h>
+	"debugmalloc.h"
+	"stroktok.h"
+	"loves.h"
+	"lerakas.h"
+
+1670444486 d:\0_0-uni-0_0\nhz\cbtorp\loves.h
+	"debugmalloc.h"
+	"stroktok.h"
+
+1670442096 d:\0_0-uni-0_0\nhz\cbtorp\lerakas.h
+	"debugmalloc.h"
+	"stroktok.h"
+
+1670442870 source:d:\0_0-uni-0_0\nhz\cbtorp\loves.c
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<Windows.h>
+	"debugmalloc.h"
+	"stroktok.h"
+	"loves.h"
+	"lerakas.h"
+
+1670443954 source:d:\0_0-uni-0_0\nhz\cbtorp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<Windows.h>
+	"debugmalloc.h"
+	"stroktok.h"
+	"loves.h"
+	"game.h"
+	"lerakas.h"
+
+1670441078 d:\0_0-uni-0_0\nhz\cbtorp\game.h
+	"debugmalloc.h"
+	"stroktok.h"
+	"loves.h"
+
+1670444661 source:d:\0_0-uni-0_0\nhz\cbtorp\game.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<Windows.h>
+	"debugmalloc.h"
+	"stroktok.h"
+	"loves.h"
+	"game.h"
+	"lerakas.h"
+
