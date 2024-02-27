@@ -212,6 +212,7 @@ int main()
     return 0;
 }
 /*
+* valtozas ami nagyon nagy
 Naplóm:
 11.06
 amikor másodjára van megadva hibásan a hajó koordinátája lehelyezéskor akkor egy végtelen loopba fut
